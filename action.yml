@@ -1,0 +1,31 @@
+name: "Push to FTP"
+description: "Push built source to FTP"
+inputs:
+  source:
+    description: "Source directory"
+    required: false
+    default: 'source'
+  built:
+    description: "Previous build directory (needs to be repo and have a remote)"
+    required: false
+    default: 'built'
+  force-ignore:
+    description: "Force ignore files"
+    required: false
+    default: |
+      /vendor/*
+      !/vendor/composer
+      /vendor/composer/*
+      !/vendor/composer/installers
+      !/vendor/composer/installed.json
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Build To GIT
+      id: 'build-to-git'
+      uses: saucal/action-build-to-git@main
+      with:
+        from: ${{ inputs.source }}
+        path: ${{ inputs.built }}
+        force-ignore: ${{ inputs.force-ignore }}
