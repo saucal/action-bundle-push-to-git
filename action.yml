@@ -22,6 +22,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Set message
+      uses: saucal/action-slack-notification@main
+      with:
+        status: "Pushing to GIT :large_yellow_circle:"
+
     - name: Build To GIT
       id: 'build-to-git'
       uses: saucal/action-build-to-git@main
