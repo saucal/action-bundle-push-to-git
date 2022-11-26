@@ -23,13 +23,13 @@ runs:
   using: "composite"
   steps:
     - name: Set message
-      uses: saucal/action-slack-notification@main
+      uses: saucal/action-slack-notification@v1
       with:
         status: "Pushing to GIT :large_yellow_circle:"
 
     - name: Build To GIT
       id: 'build-to-git'
-      uses: saucal/action-build-to-git@main
+      uses: saucal/action-build-to-git@v1
       with:
         from: ${{ inputs.source }}
         path: ${{ inputs.built }}
