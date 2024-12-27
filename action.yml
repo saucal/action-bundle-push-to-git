@@ -1,5 +1,5 @@
-name: "Push to FTP"
-description: "Push built source to FTP"
+name: "Push to GIT"
+description: "Push built source to GIT"
 inputs:
   source:
     description: "Source directory"
@@ -13,6 +13,7 @@ inputs:
     description: "Force ignore files"
     required: false
     default: |
+      /auth.json
       /vendor/*
       !/vendor/composer
       /vendor/composer/*
@@ -29,7 +30,7 @@ runs:
 
     - name: Build To GIT
       id: 'build-to-git'
-      uses: saucal/action-build-to-git@v1
+      uses: saucal/action-build-to-git@v2
       with:
         from: ${{ inputs.source }}
         path: ${{ inputs.built }}
